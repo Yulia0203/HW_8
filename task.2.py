@@ -1,33 +1,32 @@
 # Дана квадратная матрица, заполненная случайными числами. Определите, сумма элементов каких строк превосходит сумму главной диагонали матрицы.
 
+from random import randint
+import statistics
 
-import random
-rows = columns = 5
-sumDiagonal = 0
-count = 0
-numbers = [0] * rows 
-beautyText = 1
+size = 4
 
-for i in range(len(numbers)):
-    numbers[i] = list(0 for _ in range(columns))
+matrix = [0] * size
 
-for i in range(rows):
-    for j in range(columns):
-        current_number = random.randint(0,30)
-        numbers[i][j] = random.randint(0,30)
-        if i == j:
-            sumDiagonal += numbers[i][j]
-        
-print("\nKвадратная матрица, заполненная случайными числами")
-for row in numbers:
-    print(row)
+for i in range(size):
+    matrix[i] = list(randint(1, 10) for c in range(size))
 
-print(f'\nсуммa главной диагонали: {sumDiagonal}')  
+for i in matrix:
+    print(i)
 
-for i in range(rows):
-    for j in range(columns):
-        count += numbers[i][j]
-    if count > sumDiagonal:
-        print(f'Суума элементов {beautyText} строки: {count} - больше суммы диагонали')
-    count = 0
-    beautyText += 1
+sum_diagonal = 0
+
+for i in range(size):
+    print(matrix[i][i], end = ' ')
+    sum_diagonal += matrix[i][i]
+
+print()
+print(sum_diagonal)
+
+sum_in_rows = []
+for i in matrix:
+    sum_in_rows.append(sum(i))
+print(sum_in_rows)
+
+for i in range(len(sum_in_rows)):
+    if sum_in_rows[i] > sum_diagonal:
+        print(f'В {i + 1} группе сумма элементов больше, чем сумма элементов в главной диагонали матрицы')

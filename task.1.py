@@ -6,7 +6,7 @@ groups = 5
 grades = [0] * groups
 
 for i in range(len(grades)):
-    grades[i] = list(randint(2, 5) for s in range(randint(20, 30)))
+    grades[i] = list(randint(2, 5) for s in range(int(input(f'Количество учеников в группе {i + 1} '))))
 
 print(grades)
 
